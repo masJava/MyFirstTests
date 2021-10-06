@@ -1,7 +1,6 @@
 package com.geekbrains.myfirsttests
 
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Test
 
 class EmailValidatorTest {
@@ -19,6 +18,21 @@ class EmailValidatorTest {
     @Test
     fun emailValidator_InvalidEmailNoTld_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("name@email"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailUncorrectedSymbols_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("?@?.?"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailTwoDog_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@@email.com"))
+    }
+
+    @Test
+    fun emailValidator_NotNullReturn_ReturnsTrue() {
+        assertNotNull(EmailValidator.isValidEmail("name@email.com"))
     }
 
     @Test
